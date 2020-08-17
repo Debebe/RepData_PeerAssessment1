@@ -75,7 +75,7 @@ sum(missing_excluded)
 
 total_number_steps_per_day_NA <- data[, .(steps_day= sum(steps)), by= date]
 
-a<-qplot(total_number_steps_per_day_NA$steps, geom="histogram", main='Number of steps-with NA',
+a<-qplot(total_number_steps_per_day_NA$steps, geom="histogram", main='Number of steps-with NA excluded',
       fill=I('pink'), col=I('pink'), alpha=I(0.5))  + xlab('number of steps') + ylab('density')
 a
 ggsave(a, file = 'fig.1_histogram_of_total_number_of_steps_day.png')
@@ -117,7 +117,7 @@ head(time_series)
 
 ```{r}
 ggplot(time_series, aes(interval, steps)) + geom_line(col='red') +xlab('5- Minute intervals') + 
-ylab('Average steps taken ~ daily')
+ylab('Average steps taken ~ daily') +ggtitle("Timeseries plot")
 ggsave('fig.2_time_series_plot_of_5_munte_interval.png')
 
 ```
@@ -218,7 +218,7 @@ head(dat)
 
 ```{r}
 ggplot(dat, aes(x =interval , y=steps, color=dateType)) +
-       geom_line() + labs(title = "Steps", x = "5-minute interval", y = "Total Number of Steps") +facet_wrap(~ dateType)
+       geom_line() + labs(title = "Panel plots of steps in Weekdays vs Weekends", x = "5-minute interval", y = "Total Number of Steps") +facet_wrap(~ dateType)
 
 ggsave('fig.4_panel_plots.png')
 
